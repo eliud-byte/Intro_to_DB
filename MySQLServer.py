@@ -1,6 +1,5 @@
 from db import DB_CONFIG
 import mysql.connector
-from mysql.connector import Error
 
 def create_database():
     """
@@ -25,7 +24,7 @@ def create_database():
             mydb.commit()
             print(f"\nDatabase 'alx_book_store' created successfully!")
 
-    except Error as e:
+    except mysql.connector.Error as e:
         print(f"\nFailed to connect to MySQL server: {e}")
 
     except Exception as e:
