@@ -1,4 +1,4 @@
-from db import mydb
+from db import DB_CONFIG
 import mysql.connector
 from mysql.connector import Error
 
@@ -11,6 +11,9 @@ def create_database():
     :type db_name: str
     """
     try:
+        mydb = mysql.connector.connect(**DB_CONFIG)
+        print("Database server connection successful!")
+        #mydb = None
         # Create SQL query
         create_db_query = f"CREATE DATABASE IF NOT EXISTS alx_book_store"
 
@@ -18,10 +21,11 @@ def create_database():
         with mydb.cursor() as cursor:
             cursor.execute(create_db_query)
             
+            # Commit the query
             mydb.commit()
             print(f"\nDatabase 'alx_book_store' created successfully!")
 
-    except mysql.connector.Error as e:
+    except Error as e:
         print(f"\nFailed to connect to MySQL server: {e}")
 
     except Exception as e:
