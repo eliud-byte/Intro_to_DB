@@ -2,7 +2,7 @@ from db import mydb
 import mysql.connector
 from mysql.connector import Error
 
-def create_database(db_name: str):
+def create_database():
     """
     This function takes a name as argument and creates a database 
     of that name.
@@ -12,14 +12,14 @@ def create_database(db_name: str):
     """
     try:
         # Create SQL query
-        create_db_query = f"CREATE DATABASE IF NOT EXISTS {db_name}"
+        create_db_query = f"CREATE DATABASE IF NOT EXISTS alx_book_store"
 
         # Execute query
         with mydb.cursor() as cursor:
             cursor.execute(create_db_query)
             
             mydb.commit()
-            print(f"\nDatabase '{db_name}' created successfully!")
+            print(f"\nDatabase 'alx_book_store' created successfully!")
 
     except mysql.connector.Error as e:
         print(f"\nFailed to connect to MySQL server: {e}")
@@ -34,4 +34,4 @@ def create_database(db_name: str):
 
 # Usage
 if __name__ == "__main__":
-    create_database("alx_book_store")
+    create_database()
